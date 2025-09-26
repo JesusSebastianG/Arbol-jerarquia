@@ -128,7 +128,8 @@ class Parser:
         
         elif self.token_actual == '(':
             self.avanzar()
-            nodo = self.parse()
+            # -------- CORRECCIÓN: analizar subexpresión lógica, NO toda la expresión ------
+            nodo = self.parse_expresion_logica()
             if self.token_actual != ')':
                 raise ValueError("Falta paréntesis de cierre")
             self.avanzar()
@@ -172,7 +173,7 @@ def _calcular_ancho_subarbol(nodo):
     
     return max(ancho_izq, ancho_der) + 2
 
-def _posicionar_nodos_optimo(nodo, pos, nivel=0, x_offset=0, sep=6):
+def _posicionar_nodos_optimo(nodo, pos, nivel=0, x_offset=0, sep=8):
     """Posiciona nodos con distribución jerárquica óptima y separación configurable"""
     if nodo is None:
         return 0
