@@ -173,7 +173,7 @@ def _calcular_ancho_subarbol(nodo):
     
     return max(ancho_izq, ancho_der) + 2
 
-def _posicionar_nodos_optimo(nodo, pos, nivel=0, x_offset=0, sep=8):
+def _posicionar_nodos_optimo(nodo, pos, nivel=0, x_offset=0, sep=30):
     """Posiciona nodos con distribución jerárquica óptima y separación configurable"""
     if nodo is None:
         return 0
@@ -216,7 +216,7 @@ def dibujar_arbol_mejorado(raiz, ax):
         return
     
     pos = {}
-    _posicionar_nodos_optimo(raiz, pos, 0, 0, sep=8)  # Puedes ajustar sep si se siguen solapando
+    _posicionar_nodos_optimo(raiz, pos, 0, 0, sep=30)  # Mayor separación entre nodos
     
     # Calcular límites
     xs = [x for x, y in pos.values()]
@@ -247,7 +247,7 @@ def dibujar_arbol_mejorado(raiz, ax):
             color_nodo = 'lightblue'
         
         # Dibujar nodo con borde grueso y texto centrado
-        ax.scatter(x, y, s=3000, facecolor=color_nodo, edgecolors='black', linewidths=3.5)
+        ax.scatter(x, y, s=1200, facecolor=color_nodo, edgecolors='black', linewidths=3.5)
         ax.text(x, y, str(nodo.valor), ha='center', va='center', 
                 fontsize=16, weight='bold', fontfamily='monospace',
                 bbox=dict(facecolor='white', alpha=0.95, edgecolor='black', boxstyle='round,pad=0.4'))
